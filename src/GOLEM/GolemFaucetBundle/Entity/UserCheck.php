@@ -28,6 +28,13 @@ class UserCheck
      */
     private $ip;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime")
+     */
+    private $updatedAt;
+
 
     /**
      * Get id
@@ -61,6 +68,22 @@ class UserCheck
     public function getIp()
     {
         return $this->ip;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 }
 

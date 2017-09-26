@@ -2,6 +2,7 @@
 
 namespace GOLEM\GolemFaucetBundle\Controller;
 
+use GOLEM\GolemFaucetBundle\Entity\UserCheck;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,6 +14,8 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $userCheckRepo = $this->getDoctrine()->getRepository('GOLEMGolemFaucetBundle:UserCheck');
         $defaultData = array();
         $form = $this->createFormBuilder($defaultData)
             ->add('wallet', TextType::class, array(
@@ -35,9 +38,27 @@ class DefaultController extends Controller
         $success = null;
         $reward = null;
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $success = true;
-            $reward = $utilsService->getReward();
+        $today = new \DateTime();
+
+        $lastCheckLimit = new \DateTime();
+        $lastCheckLimit->sub(new \DateInterval('PT1H'));
+
+        $userCheck = $userCheckRepo->findOneBy(array('ip' => $request->getClientIp()));
+        if(empty($userCheck) || $userCheck->getUpdatedAt() < $lastCheckLimit) {
+            if (
+                $form->isSubmitted() &&
+                $form->isValid()) {
+                $userCheck = new UserCheck();
+                $userCheck->setUpdatedAt($today);
+                $userCheck->setIp($request->getClientIp());
+                $em->persist($userCheck);
+                $em->flush();
+                $success = true;
+                $reward = $utilsService->getReward();
+            }
+        } else {
+            $success = false;
+            $reward = 0;
         }
 
         return $this->render('GOLEMGolemFaucetBundle:GolemFaucet:index.html.twig', [
