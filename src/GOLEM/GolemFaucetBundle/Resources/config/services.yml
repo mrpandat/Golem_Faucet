@@ -1,3 +1,4 @@
 services:
     golem_golem_faucet.utils:
         class: GOLEM\GolemFaucetBundle\Service\Utils
+        arguments: ["@doctrine.orm.entity_manager", "@logger"]

@@ -9,6 +9,15 @@ class Utils
 
     const REWARDS_CHANCE = array(40, 70, 95, 100);
 
+    protected $_em;
+    protected $_logger;
+
+    public function __construct($em, $logger)
+    {
+        $this->_em = $em;
+        $this->_logger = $logger;
+    }
+
     /**
      * @return int|mixed
      */
@@ -24,6 +33,7 @@ class Utils
         } elseif ($chance <= self::REWARDS_CHANCE[3]) {
             return self::REWARDS[3];
         } else {
+            $this->_logger->error('Get reward error');
             return 0;
         }
     }
