@@ -1,0 +1,88 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <div class="container-fluid pb2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron well">
+                    <h2>
+                        What the... ?
+                    </h2>
+                    <p>
+                        Free money ? What's the catch ? Well, there is none, We strongly believe in the money token and so we distribute it for free to the people to raise awareness.
+                        <br>
+                        To use it simply enter your ethereum wallet address and press the button !
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>GNT won</th>
+                            <th>Chance</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>0.001 GNT</td>
+                            <td>5%</td>
+                        </tr>
+                        <tr>
+                            <td>0.0005 GNT</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td>0.00020 GNT</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td>0.00013 GNT</td>
+                            <td>40%</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </p>
+                    <p>
+                        <a class="btn btn-primary btn-large" href="https://golem.network/" target="_blank">Learn more about the money token</a>
+                    </p>
+                </div>
+                {% form_theme form 'GOLEMGolemFaucetBundle:GolemFaucet:form.html.twig' %}
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_widget(form.claim, { 'label': 'Claim your golems' }) }}
+                {{ form_end(form) }}
+                <br>
+                <br>
+                <br>
+                <br>
+                <div>
+                    {% if success is defined and success is not null %}
+                        {% if reward is defined and reward is not null %}
+                            <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h4>
+                                    Alert!
+                                </h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-dismissable alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h4>
+                                    Alert!
+                                </h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <ul class="breadcrumb navbar-fixed-bottom">
+                    <li>
+                        <a href="/">Home</a></span>
+                    </li>
+                    <li>
+                        <a href="/about">About</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

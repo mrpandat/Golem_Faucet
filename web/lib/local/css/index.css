@@ -1,0 +1,32 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+.bg-gradient {
+    background: #001d55;
+    background: -moz-linear-gradient(left, #001d55 0%, #01d3e0 100%);
+    background: -webkit-linear-gradient(left, #001d55 0%,#01d3e0 100%);
+    background: linear-gradient(to right, #001d55 0%,#01d3e0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001d55', endColorstr='#01d3e0',GradientType=1 );
+}
+
+.big-title {
+    color: white;
+}
+
+form label {
+    color: white;
+}
+
+.mb1 {
+    margin-bottom: 10px;
+}
+
+.pb2 {
+    padding-bottom: 30px;
+}
+
+.breadcrumb {
+    margin-bottom: 0 !important;
+}
