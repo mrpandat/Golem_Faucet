@@ -1,0 +1,4 @@
+services:
+#    golem_golem_faucet.example:
+#        class: GOLEM\GolemFaucetBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

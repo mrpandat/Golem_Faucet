@@ -1,0 +1,3 @@
+golem_golem_faucet_homepage:
+    path:     /
+    defaults: { _controller: GOLEMGolemFaucetBundle:Default:index }

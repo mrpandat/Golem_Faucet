@@ -1,0 +1,4 @@
+golem_golem_faucet:
+    resource: "@GOLEMGolemFaucetBundle/Resources/config/routing.yml"
+    prefix:   /
+
